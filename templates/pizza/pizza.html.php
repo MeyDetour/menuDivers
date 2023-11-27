@@ -7,7 +7,7 @@
         <h5 class="card-title"><?= $pizza['nom']?></h5>
         <h5 class="card-title"><?= $pizza['prix']?></h5>
         <p class="card-text">Composition : <?= $pizza['composition']?></p>
-        <a href="index.php"><button class="btn btn-primary">REtour</button></a>
+        <a href="fichePizza.php"><button class="btn btn-primary">REtour</button></a>
 
     </div>
 </div>
