@@ -73,7 +73,7 @@ $bDDkebabs = [
         "prix" => "15€",
     ],
 ];
-
+/*
 
 require_once 'logique/logique.php';
 
@@ -89,5 +89,37 @@ if (isset($_GET['kebabId'])){
 else{
 
     afficher("kebab/kebabs",["kebabs"=>$bDDkebabs]);
+}
+*/
+
+// try,catch,finaly  new PDO  ,  set attribut , query
+
+$host = 'localhost';
+$bdd = 'menuDivers';
+$username = 'Mey02583';
+$password = '(-*5Sdvc4@3VyWKo';
+
+
+try {
+    $connexion = new PDO("mysql:host=$host;dbname=$bdd",$username,$password);
+    $connexion->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE,pdo::FETCH_ASSOC);
+
+    $requete = "SELECT * FROM pizza";
+    $tableau = $connexion->query($requete);
+
+    $content = '<div>';
+
+    foreach ($tableau as $row){
+
+        $content.= '<div><h1>'.$row['nom'].'</h1></div>';
+    }
+    $content .= '</div>';
+    require_once 'templates/base.html.php';
+
+} catch (PDOException $e) {
+    die("Erreur de connexion à la base de données : " . $e->getMessage());
+} finally {
+    // Fermeture de la connexion dans le bloc finally pour s'assurer qu'elle est toujours fermée
+    $connexion = null;
 }
 
